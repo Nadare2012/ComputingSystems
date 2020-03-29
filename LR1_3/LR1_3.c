@@ -30,7 +30,7 @@ DWORD WINAPI my_thread_func2(LPVOID lp_parameter)
 {
 	BOOL* active = (BOOL*)lp_parameter;
 	*active = TRUE;
-	computing_func(INT32_MAX / 2);
+	computing_func(INT32_MAX / 16);
 	*active = FALSE;
 	ExitThread(0);
 }
@@ -39,7 +39,7 @@ DWORD WINAPI my_thread_func3(LPVOID lp_parameter)
 {
 	BOOL* active = (BOOL*)lp_parameter;
 	*active = TRUE;
-	computing_func(INT32_MAX / 2);
+	computing_func(INT32_MAX / 16);
 	*active = FALSE;
 	ExitThread(0);
 }
@@ -48,7 +48,7 @@ DWORD WINAPI my_thread_func4(LPVOID lp_parameter)
 {
 	BOOL* active = (BOOL*)lp_parameter;
 	*active = TRUE;
-	computing_func(INT32_MAX / 2);
+	computing_func(INT32_MAX / 16);
 	*active = FALSE;
 	ExitThread(0);
 }
@@ -57,7 +57,7 @@ DWORD WINAPI my_thread_func5(LPVOID lp_parameter)
 {
 	BOOL* active = (BOOL*)lp_parameter;
 	*active = TRUE;
-	computing_func(INT32_MAX / 2);
+	computing_func(INT32_MAX / 16);
 	*active = FALSE;
 	ExitThread(0);
 }
@@ -66,7 +66,7 @@ DWORD WINAPI my_thread_func6(LPVOID lp_parameter)
 {
 	BOOL* active = (BOOL*)lp_parameter;
 	*active = TRUE;
-	computing_func(INT32_MAX / 2);
+	computing_func(INT32_MAX / 16);
 	*active = FALSE;
 	ExitThread(0);
 }
@@ -75,7 +75,7 @@ DWORD WINAPI my_thread_func7(LPVOID lp_parameter)
 {
 	BOOL* active = (BOOL*)lp_parameter;
 	*active = TRUE;
-	computing_func(INT32_MAX / 2);
+	computing_func(INT32_MAX / 16);
 	*active = FALSE;
 	ExitThread(0);
 }
@@ -84,7 +84,7 @@ DWORD WINAPI my_thread_func8(LPVOID lp_parameter)
 {
 	BOOL* active = (BOOL*)lp_parameter;
 	*active = TRUE;
-	computing_func(INT32_MAX / 2);
+	computing_func(INT32_MAX / 16);
 	*active = FALSE;
 	ExitThread(0);
 }
