@@ -1,15 +1,27 @@
 #pragma hdrstop
 #include <stdio.h>
 #include <conio.h>
+#include <math.h>
+#include <stdint.h>
 #include <time.h>
 #include <windows.h>
 
 time_t t1, t2;
 
+void computing_func(const int loop_length)
+{
+	double tmp = INT32_MAX;
+	for (int i = 0; i < loop_length; ++i)
+		tmp /= (atan(1.0) * 4);
+	for (int i = 0; i < loop_length; ++i)
+		tmp *= (atan(1.0) * 4);
+}
+
 DWORD WINAPI my_thread_func1(LPVOID lp_parameter)
 {
 	BOOL* active = (BOOL*)lp_parameter;
 	*active = TRUE;
+	computing_func(INT32_MAX / 2);
 	*active = FALSE;
 	ExitThread(0);
 }
@@ -18,6 +30,7 @@ DWORD WINAPI my_thread_func2(LPVOID lp_parameter)
 {
 	BOOL* active = (BOOL*)lp_parameter;
 	*active = TRUE;
+	computing_func(INT32_MAX / 2);
 	*active = FALSE;
 	ExitThread(0);
 }
