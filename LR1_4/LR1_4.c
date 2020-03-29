@@ -122,6 +122,17 @@ void init_thread(void)
 	HANDLE h_thread7 = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)my_thread_func7, (void*)&active7, 0, &thread_id7);
 	HANDLE h_thread8 = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)my_thread_func8, (void*)&active8, 0, &thread_id8);
 
+	SetThreadAffinityMask(h_thread1, 1 << 0);
+	SetThreadAffinityMask(h_thread2, 1 << 1);
+	SetThreadAffinityMask(h_thread3, 1 << 2);
+	SetThreadAffinityMask(h_thread4, 1 << 3);
+	SetThreadAffinityMask(h_thread5, 1 << 4);
+	SetThreadAffinityMask(h_thread6, 1 << 5);
+	SetThreadAffinityMask(h_thread7, 1 << 6);
+	SetThreadAffinityMask(h_thread8, 1 << 7);
+
+	SetThreadPriority(h_thread1, THREAD_PRIORITY_HIGHEST);
+
 	printf("\nThreads IDs %lu %lu %lu %lu %lu %lu %lu %lu\n", thread_id1, thread_id2, thread_id3, thread_id4, thread_id5, thread_id6, thread_id7, thread_id8);
 
 	t1 = time(NULL);
