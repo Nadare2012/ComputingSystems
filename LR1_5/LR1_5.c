@@ -7,6 +7,7 @@
 #include <windows.h>
 
 time_t t1, t2;
+HANDLE mutex;
 
 void computing_func(const int loop_length)
 {
@@ -21,7 +22,9 @@ DWORD WINAPI my_thread_func1(LPVOID lp_parameter)
 {
 	BOOL* active = (BOOL*)lp_parameter;
 	*active = TRUE;
+	WaitForSingleObject(mutex, INFINITE);
 	computing_func(INT32_MAX / 2);
+	ReleaseMutex(mutex);
 	*active = FALSE;
 	ExitThread(0);
 }
@@ -30,7 +33,9 @@ DWORD WINAPI my_thread_func2(LPVOID lp_parameter)
 {
 	BOOL* active = (BOOL*)lp_parameter;
 	*active = TRUE;
+	WaitForSingleObject(mutex, INFINITE);
 	computing_func(INT32_MAX / 16);
+	ReleaseMutex(mutex);
 	*active = FALSE;
 	ExitThread(0);
 }
@@ -39,7 +44,9 @@ DWORD WINAPI my_thread_func3(LPVOID lp_parameter)
 {
 	BOOL* active = (BOOL*)lp_parameter;
 	*active = TRUE;
+	WaitForSingleObject(mutex, INFINITE);
 	computing_func(INT32_MAX / 16);
+	ReleaseMutex(mutex);
 	*active = FALSE;
 	ExitThread(0);
 }
@@ -48,7 +55,9 @@ DWORD WINAPI my_thread_func4(LPVOID lp_parameter)
 {
 	BOOL* active = (BOOL*)lp_parameter;
 	*active = TRUE;
+	WaitForSingleObject(mutex, INFINITE);
 	computing_func(INT32_MAX / 16);
+	ReleaseMutex(mutex);
 	*active = FALSE;
 	ExitThread(0);
 }
@@ -57,7 +66,9 @@ DWORD WINAPI my_thread_func5(LPVOID lp_parameter)
 {
 	BOOL* active = (BOOL*)lp_parameter;
 	*active = TRUE;
+	WaitForSingleObject(mutex, INFINITE);
 	computing_func(INT32_MAX / 16);
+	ReleaseMutex(mutex);
 	*active = FALSE;
 	ExitThread(0);
 }
@@ -66,7 +77,9 @@ DWORD WINAPI my_thread_func6(LPVOID lp_parameter)
 {
 	BOOL* active = (BOOL*)lp_parameter;
 	*active = TRUE;
+	WaitForSingleObject(mutex, INFINITE);
 	computing_func(INT32_MAX / 16);
+	ReleaseMutex(mutex);
 	*active = FALSE;
 	ExitThread(0);
 }
@@ -75,7 +88,9 @@ DWORD WINAPI my_thread_func7(LPVOID lp_parameter)
 {
 	BOOL* active = (BOOL*)lp_parameter;
 	*active = TRUE;
+	WaitForSingleObject(mutex, INFINITE);
 	computing_func(INT32_MAX / 16);
+	ReleaseMutex(mutex);
 	*active = FALSE;
 	ExitThread(0);
 }
@@ -84,13 +99,17 @@ DWORD WINAPI my_thread_func8(LPVOID lp_parameter)
 {
 	BOOL* active = (BOOL*)lp_parameter;
 	*active = TRUE;
+	WaitForSingleObject(mutex, INFINITE);
 	computing_func(INT32_MAX / 16);
+	ReleaseMutex(mutex);
 	*active = FALSE;
 	ExitThread(0);
 }
 
 void init_thread(void)
 {
+	mutex = CreateMutex(NULL, FALSE, NULL);
+
 	SYSTEM_INFO system_info;
 	GetSystemInfo(&system_info);
 	int nmb_prc = system_info.dwNumberOfProcessors;
@@ -154,6 +173,7 @@ void init_thread(void)
 	CloseHandle(h_thread6);
 	CloseHandle(h_thread7);
 	CloseHandle(h_thread8);
+	CloseHandle(mutex);
 }
 
 int main(int argc, char* argv[])
